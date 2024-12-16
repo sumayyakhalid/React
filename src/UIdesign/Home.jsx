@@ -19,6 +19,7 @@ const pages = [
     { id:'1' ,name: 'Home', path: '/callcomponent' },
     { id:'2' , name: 'About', path: '/about' },
     { id:'3' ,name: 'Contact', path: '/contact' },
+    { id:'4' ,name: 'Blog', path: '/blog' },
   ];
 const settings = [
   {name:'Logout' ,path:'/'},
