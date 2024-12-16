@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+.css-ptdwpq-MuiPaper-root-MuiAppBar-root{
+  --AppBar-background: #d219a3 !important;
+}
+ul>li{
+  list-style: none;
+}
+/* toggle */
+[data-theme="light"] {
+  --bg-color: white;
+ 
+}
+
+[data-theme="dark"] {
+  --bg-color: black;
+ 
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.inputBox {
+  cursor: pointer;
+}
+
+ /* blog */
+ .card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 20%;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+  padding: 2px 16px;
+}
+.cards_div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.card{
+  margin: 20px;
+
+}
+.blogs_details{
+  display: block;
+  justify-content: center;
+  align-items: center;
+
+}
+/* app css */
+.h1{
+  font-size: 250%;
+  font-weight:bold;
+}
+.css-1osj8n2-MuiGrid-root{
+  margin: auto !important;
+}
+.shop_btn{
+  margin-top: 10px !important;
+}
+.content{
+  margin-top: 40px;
+}
