@@ -8,11 +8,13 @@ import { Box } from '@mui/material';
 import {Button} from '@mui/material';
 import {Link} from 'react-router-dom'
 import { Outlet } from 'react-router-dom';
+
 export default function ActionAreaCard({products}) {
   console.log("Products:",products)
   return (
     <div>
      <h1 className="h1">PRODUCTS</h1>
+     
      <Button sx={{background:'#d219a3',color:'white',m:3}}  component={Link} to='men'>
        Mens 
      </Button>
@@ -45,7 +47,6 @@ export default function ActionAreaCard({products}) {
      </Box>
 
     </div>
-  
-  
+
   );
 }

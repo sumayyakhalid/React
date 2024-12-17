@@ -79,11 +79,15 @@
 
 import React from 'react'
 import UiDesignApp from './UIdesign/App'
+import NoMemo from './UIdesign/NoMemo'
+import Memo from './UIdesign/Memo' 
 
 const App = () => {
   return (
     <div>
       <UiDesignApp/>
+     {/* <Memo/> */}
+      {/* <NoMemo/> */}
     </div>
   )
 }

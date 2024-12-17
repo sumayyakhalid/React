@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, UNSAFE_RemixErrorBoundary } from "react-router-dom";
 import Home from "./Home.jsx";
 import About from "./About.jsx";
 import Contact from "./Contact.jsx";
@@ -9,7 +9,13 @@ import Women from "./Women.jsx";
 import Login from "./Login.jsx";
 import { useEffect } from "react";
 import ProtectedRoute from "./ProtectedRoute.jsx";
-import Blog from "./Blog.jsx";
+import Footer from "./Footer.jsx";
+// import Blog from "./Blog.jsx";
+import ErrorBoundary from "./ErrorBoundary.jsx";
+import { CircularProgress } from "@mui/material";
+import { lazy, Suspense } from 'react';
+const Blog = lazy(() => import('./Blog.jsx'));
+
 function UiDesignApp() {
   const [isAuthenticated, setAuth] = useState(
     localStorage.getItem("isAuthenticated") ? true : false
@@ -29,9 +35,9 @@ function UiDesignApp() {
 
   return (
     <div className="App">
-     
 
       <Router>
+<ErrorBoundary>
         <Routes>
           <Route path="/" element={<Login login={login} />}></Route>
           <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} handleSetIsAuthenticated={handleSetIsAuth} />}>
@@ -51,9 +57,12 @@ function UiDesignApp() {
             </Route>
             <Route path="/contact" element={<Contact />}></Route>
             <Route path="/about" element={<About />}></Route>
-            <Route path="/blog" element={<Blog/>}></Route>
+            {/* <Route path="/blog" element={<Blog/>}></Route> */}
+       
+            <Route path='/blog' element={<Suspense fallback={<CircularProgress />}>{<Blog/>}</Suspense>} />
           </Route>
         </Routes>
+   </ErrorBoundary>
       </Router>
     </div>
   );
