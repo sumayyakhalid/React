@@ -90,7 +90,7 @@ const Blog = () => {
         {console.log("Filtering blogs...")}
         <Suspense fallback={<CircularProgress />}>
           {filteredBlogs.length > 0 ? (
-            filteredBlogs.map((blog) => <BlogCard key={blog.id}  />)
+            filteredBlogs.map((blog) => <BlogCard key={blog.id} blog={blog} />)
           ) : (
             <p style={{ fontSize: "18px", fontWeight: "500" }}>
               No blogs found matching your search.
