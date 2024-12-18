@@ -14,6 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Link, NavLink } from 'react-router';
 import { Link as BaseLink } from 'react-router-dom';
+import ThemeSwitcher from './ThemeSwitcher';
 
 const pages = [
     { id:'1' ,name: 'Home', path: '/callcomponent' },
@@ -101,10 +102,11 @@ function Home({logout}) {
                 <MenuItem key={index}  component={NavLink}
                 to={page.path} onClick={handleCloseNavMenu}>
                   <Typography sx={{ textAlign: 'center' }}  style={({ isActive }) => ({
-                color: isActive ? 'black' : 'white', // Active link styling
+                color: isActive ? 'pink' : 'white', // Active link styling
                 fontWeight: isActive ? 'bold' : 'normal',
               
               })}>{page.name}</Typography>
+              <ThemeSwitcher/>
                 </MenuItem>
               ))}
             </Menu>
@@ -135,7 +137,7 @@ function Home({logout}) {
               component={NavLink}
               to={page.path}
               style={({ isActive }) => ({
-                color: isActive ? 'black' : 'white', // Active link styling
+                color: isActive ? 'pink' : 'white', // Active link styling
                 fontWeight: isActive ? 'bold' : 'normal',
               
               })}
@@ -143,8 +145,11 @@ function Home({logout}) {
             >
               
               {page.name}
+            
             </Button>
+             
           ))}
+           <ThemeSwitcher />
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">

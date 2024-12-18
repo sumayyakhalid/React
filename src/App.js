@@ -81,13 +81,39 @@ import React from 'react'
 import UiDesignApp from './UIdesign/App'
 import NoMemo from './UIdesign/NoMemo'
 import Memo from './UIdesign/Memo' 
+import { useSelector } from 'react-redux';
+import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
+import ThemeSwitcher from './UIdesign/ThemeSwitcher';
 
 const App = () => {
+   // Get the current theme from Redux store
+   const theme = useSelector((state) => state.theme.theme);
+   
+   // Define the light and dark themes using Material-UI's createTheme function
+   const lightTheme = createTheme({
+    
+     palette: {
+       mode: 'light',
+     },
+   });
+ 
+   const darkTheme = createTheme({
+     palette: {
+       mode: 'dark',
+     },
+   });
+ 
+   // Use the theme selected from Redux (light or dark)
+   const currentTheme = theme === 'light' ? lightTheme : darkTheme;
+ 
   return (
     <div>
-      <UiDesignApp/>
-     {/* <Memo/> */}
-      {/* <NoMemo/> */}
+      <ThemeProvider theme={currentTheme}>
+      <CssBaseline /> {/* Ensures that global styles (like background color) are applied */}
+      <div>
+        <UiDesignApp/>
+      </div>
+    </ThemeProvider>
     </div>
   )
 }

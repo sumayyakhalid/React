@@ -37,7 +37,7 @@ function UiDesignApp() {
     <div className="App">
 
       <Router>
-<ErrorBoundary>
+
         <Routes>
           <Route path="/" element={<Login login={login} />}></Route>
           <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} handleSetIsAuthenticated={handleSetIsAuth} />}>
@@ -62,7 +62,7 @@ function UiDesignApp() {
             <Route path='/blog' element={<Suspense fallback={<CircularProgress />}>{<Blog/>}</Suspense>} />
           </Route>
         </Routes>
-   </ErrorBoundary>
+   
       </Router>
     </div>
   );

@@ -8,6 +8,9 @@ import Footer from "./Footer";
 import { Button } from "@mui/material";
 import { Link, Outlet } from "react-router-dom";
 import ErrorBoundary from "./ErrorBoundary";
+import Description from "./NewDescription";
+
+
 const Callcomponents = ({ logout }) => {
   // products data
   const [arr, setArr] = useState([
@@ -49,12 +52,13 @@ const Callcomponents = ({ logout }) => {
     <div>
       {/* navbar */}
       <Home logout={logout} />
+     
       <Header />
-      <ErrorBoundary>
+      
         <Box sx={{ display: "flex", justifyContent: "space-around", my: 4 }}>
           <Card products={arr} />
         </Box>
-      </ErrorBoundary>
+    <Description/>
       <Footer />
     </div>
   );

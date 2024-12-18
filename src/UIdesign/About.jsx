@@ -10,6 +10,7 @@ import about1 from '../UIdesign/images/about1.png'
 import about2 from '../UIdesign/images/about2.png'
 import { useState } from 'react'
 import {Link, Outlet} from 'react-router-dom'
+import Description from './NewDescription'
 const About = () => {
   const [array, setArr] = useState([
     {
@@ -112,6 +113,7 @@ const About = () => {
 </CardActionArea>
        ))}
  </Box>
+ <Description/>
   <Footer/>
    </div>
    

@@ -15,14 +15,14 @@ export default function ActionAreaCard({products}) {
     <div>
      <h1 className="h1">PRODUCTS</h1>
      
-     <Button sx={{background:'#d219a3',color:'white',m:3}}  component={Link} to='men'>
+     {/* <Button sx={{background:'#d219a3',color:'white',m:3}}  component={Link} to='men'>
        Mens 
      </Button>
   
      <Button sx={{background:'#d219a3',color:'white',m:3}}  component={Link} to='women'>
        wOmen
      </Button>
-     <Outlet/>
+     <Outlet/> */}
    <Box sx={{ display: "flex", justifyContent: "center",flexWrap:'wrap',alignItems:'center', my: 4 }}>
   {products.map((product) => (
    
