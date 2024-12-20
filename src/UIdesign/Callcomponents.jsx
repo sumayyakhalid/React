@@ -9,9 +9,14 @@ import { Button } from "@mui/material";
 import { Link, Outlet } from "react-router-dom";
 import ErrorBoundary from "./ErrorBoundary";
 import Description from "./NewDescription";
-
+import withLoader from "./withLoader";
+import DataDisplay from './DataDisplay';
+import {Typography} from "@mui/material";
 
 const Callcomponents = ({ logout }) => {
+  // Create the enhanced component
+const DataDisplayWithLoader = withLoader(DataDisplay);
+
   // products data
   const [arr, setArr] = useState([
     {
@@ -59,6 +64,14 @@ const Callcomponents = ({ logout }) => {
           <Card products={arr} />
         </Box>
     <Description/>
+      {/* Higher Order Components */}
+      <Typography variant='h4' sx={{fontWeight:"bolder"}}>Higher Order Components</Typography>
+
+      {/* Loading state */}
+      <DataDisplayWithLoader isLoading={true} />
+
+      {/* Data loaded */}
+      <DataDisplayWithLoader isLoading={false} data="Here is your data!" />
       <Footer />
     </div>
   );

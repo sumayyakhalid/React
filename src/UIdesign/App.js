@@ -14,6 +14,7 @@ import Footer from "./Footer.jsx";
 import ErrorBoundary from "./ErrorBoundary.jsx";
 import { CircularProgress } from "@mui/material";
 import { lazy, Suspense } from 'react';
+import BlogDesp from "./BlogDesp.jsx";
 const Blog = lazy(() => import('./Blog.jsx'));
 
 function UiDesignApp() {
@@ -35,6 +36,7 @@ function UiDesignApp() {
 
   return (
     <div className="App">
+{/* <ErrorBoundary> */}
 
       <Router>
 
@@ -58,12 +60,14 @@ function UiDesignApp() {
             <Route path="/contact" element={<Contact />}></Route>
             <Route path="/about" element={<About />}></Route>
             {/* <Route path="/blog" element={<Blog/>}></Route> */}
-       
+        
             <Route path='/blog' element={<Suspense fallback={<CircularProgress />}>{<Blog/>}</Suspense>} />
+            <Route path="/blog/:id" element={<BlogDesp/>}></Route> 
           </Route>
         </Routes>
-   
+    
       </Router>
+      {/* </ErrorBoundary> */}
     </div>
   );
 }

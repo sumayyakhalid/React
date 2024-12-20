@@ -5,6 +5,7 @@ import Home from "../UIdesign/Home";
 import Footer from "./Footer";
 import { useMemo } from "react";
 import { Box, CircularProgress, Pagination } from "@mui/material";
+import { useTransition ,startTransition} from "react";
 
 import { lazy } from "react";
 const BlogCard = lazy(() => import("./BlogCard.jsx"));
@@ -14,6 +15,7 @@ const Blog = () => {
   const [searchTerm, setSearchTerm] = useState(""); // State for search input
   const [page, setpage] = useState(1);
   const [loading, setloading] = useState(true);
+  
   const perpage = 10;
 
   const fetchdata = async (page) => {
@@ -44,15 +46,25 @@ const Blog = () => {
     return () => clearTimeout(timer);
   }, [page]);
 
-  // Filter blogs based on the search term
-  const filteredBlogs = useMemo(() => {
-    return blogs.filter(
-      (blog) =>
-        blog.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        blog.description.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  }, [blogs, searchTerm]); // Only re-run filtering when blogs or searchTerm changes
+  const handleinput=((e)=>{
+      setSearchTerm(e.target.value);
+  })
+  startTransition(()=>{
+    // const filteredBlogs = blogs.filter(
+    //   (blog) =>
+    //     blog.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    //     blog.description.toLowerCase().includes(searchTerm.toLowerCase())
+    // );
+    // Filter blogs based on the search term
 
+  })
+
+  const filteredBlogs = blogs.filter(
+    (blog) =>
+      blog.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      blog.description.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  // Filter blogs based on the search term
   return (
     <div>
       <Home />
@@ -62,7 +74,8 @@ const Blog = () => {
           type="text"
           placeholder="Search blogs by title or description..."
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          // onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={(e)=>handleinput(e)}
           style={{
             width: "50%",
             padding: "10px",
@@ -89,13 +102,13 @@ const Blog = () => {
       >
         {console.log("Filtering blogs...")}
         <Suspense fallback={<CircularProgress />}>
-          {filteredBlogs.length > 0 ? (
+          {loading?<CircularProgress />:filteredBlogs.length > 0 ? (
             filteredBlogs.map((blog) => <BlogCard key={blog.id} blog={blog} />)
           ) : (
             <p style={{ fontSize: "18px", fontWeight: "500" }}>
               No blogs found matching your search.
             </p>
-          )}
+        )}
         </Suspense>
       </div>
 

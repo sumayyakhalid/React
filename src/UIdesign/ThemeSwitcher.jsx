@@ -2,7 +2,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { toggleTheme } from './themeSlice';
-import { Box, Button } from '@mui/material';
+import { Box, Button, Switch } from '@mui/material';
 import {setText} from './demoSlice'
 import { useSelector } from 'react-redux';
 const ThemeSwitcher = () => {
@@ -20,13 +20,13 @@ const ThemeSwitcher = () => {
   };
   return (
    <Box>
-     <Button sx={{my:"auto",height:"20px" ,background:"#c284b2",color:'white'}}  onClick={handleTextChange} >
+     {/* <Button sx={{my:"auto",height:"20px" ,background:"#c284b2",color:'white'}}  onClick={handleTextChange} >
     Text updated
-    </Button>
-     <Button sx={{my:"auto",height:"20px" ,background:"#c284b2",color:'white'}}  onClick={handleThemeToggle} >
-      Toggle Theme
-    </Button>
-     <h1>{demoTheme}</h1>
+    </Button> */}
+     <Switch color='default'  onClick={handleThemeToggle} >
+      
+    </Switch>
+     {/* <h1>{demoTheme}</h1> */}
    </Box>
    
    

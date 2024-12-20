@@ -84,6 +84,7 @@ import Memo from './UIdesign/Memo'
 import { useSelector } from 'react-redux';
 import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
 import ThemeSwitcher from './UIdesign/ThemeSwitcher';
+import ErrorBoundary from './UIdesign/ErrorBoundary';
 
 const App = () => {
    // Get the current theme from Redux store
@@ -108,12 +109,14 @@ const App = () => {
  
   return (
     <div>
+      {/* <ErrorBoundary> */}
       <ThemeProvider theme={currentTheme}>
       <CssBaseline /> {/* Ensures that global styles (like background color) are applied */}
       <div>
         <UiDesignApp/>
       </div>
     </ThemeProvider>
+    {/* </ErrorBoundary> */}
     </div>
   )
 }
