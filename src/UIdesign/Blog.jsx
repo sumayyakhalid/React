@@ -15,7 +15,8 @@ const Blog = () => {
   const [searchTerm, setSearchTerm] = useState(""); // State for search input
   const [page, setpage] = useState(1);
   const [loading, setloading] = useState(true);
-  
+  const[filterblogs,setfilterblogs]=useState([])
+
   const perpage = 10;
 
   const fetchdata = async (page) => {
@@ -27,6 +28,7 @@ const Blog = () => {
       if (response.ok) {
         const data = await response.json();
         setblog(data);
+        setfilterblogs(data);
         console.log(data);
       } else {
         console.log(response.status);
@@ -48,23 +50,18 @@ const Blog = () => {
 
   const handleinput=((e)=>{
       setSearchTerm(e.target.value);
+      startTransition(()=>{
+        const filteredBlogs = blogs.filter(
+          (blog) =>
+            blog.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            blog.description.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setfilterblogs(filteredBlogs);
+        // Filter blogs based on the search term
+    
+      })
   })
-  startTransition(()=>{
-    // const filteredBlogs = blogs.filter(
-    //   (blog) =>
-    //     blog.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    //     blog.description.toLowerCase().includes(searchTerm.toLowerCase())
-    // );
-    // Filter blogs based on the search term
-
-  })
-
-  const filteredBlogs = blogs.filter(
-    (blog) =>
-      blog.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      blog.description.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-  // Filter blogs based on the search term
+  
   return (
     <div>
       <Home />
@@ -101,9 +98,11 @@ const Blog = () => {
         style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}
       >
         {console.log("Filtering blogs...")}
+
         <Suspense fallback={<CircularProgress />}>
-          {loading?<CircularProgress />:filteredBlogs.length > 0 ? (
-            filteredBlogs.map((blog) => <BlogCard key={blog.id} blog={blog} />)
+        
+          {loading?<CircularProgress />:filterblogs.length > 0 ? (
+            filterblogs.map((blog) => <BlogCard key={blog.id} blog={blog} />)
           ) : (
             <p style={{ fontSize: "18px", fontWeight: "500" }}>
               No blogs found matching your search.

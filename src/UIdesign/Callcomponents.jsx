@@ -13,11 +13,12 @@ import withLoader from "./withLoader";
 import DataDisplay from './DataDisplay';
 import {Typography} from "@mui/material";
 
+
 const Callcomponents = ({ logout }) => {
   // Create the enhanced component
-const DataDisplayWithLoader = withLoader(DataDisplay);
+const DataDisplayWithLoader = withLoader(Description);
 
-  // products data
+  // products data       
   const [arr, setArr] = useState([
     {
       id: "1",
@@ -63,16 +64,13 @@ const DataDisplayWithLoader = withLoader(DataDisplay);
         <Box sx={{ display: "flex", justifyContent: "space-around", my: 4 }}>
           <Card products={arr} />
         </Box>
-    <Description/>
       {/* Higher Order Components */}
-      <Typography variant='h4' sx={{fontWeight:"bolder"}}>Higher Order Components</Typography>
+      <Typography variant='h4' sx={{fontWeight:"bolder"}}>Reviews</Typography>
 
       {/* Loading state */}
-      <DataDisplayWithLoader isLoading={true} />
+      <DataDisplayWithLoader someprops="hello world" />
 
-      {/* Data loaded */}
-      <DataDisplayWithLoader isLoading={false} data="Here is your data!" />
-      <Footer />
+     <Footer />
     </div>
   );
 };

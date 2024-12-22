@@ -10,8 +10,6 @@ const Description = () => {
 
   return (
     <div>
-      <Typography variant='h4' sx={{fontWeight:"bolder"}}>Reviews</Typography>
-
       <Box
       sx={{
         display: "flex",
