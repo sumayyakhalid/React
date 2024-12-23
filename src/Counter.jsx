@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
+
 const Counter = () => {
     //  ---------counter task
   const [counter, setcounter] = useState(0);

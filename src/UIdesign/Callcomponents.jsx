@@ -12,6 +12,8 @@ import Description from "./NewDescription";
 import withLoader from "./withLoader";
 import DataDisplay from './DataDisplay';
 import {Typography} from "@mui/material";
+import Memo from "./Memo";
+import NoMemo from './NoMemo'
 
 
 const Callcomponents = ({ logout }) => {
@@ -57,6 +59,8 @@ const DataDisplayWithLoader = withLoader(Description);
   return (
     <div>
       {/* navbar */}
+      {/* <NoMemo/> */}
+      {/* <Memo/> */}
       <Home logout={logout} />
      
       <Header />
@@ -68,7 +72,7 @@ const DataDisplayWithLoader = withLoader(Description);
       <Typography variant='h4' sx={{fontWeight:"bolder"}}>Reviews</Typography>
 
       {/* Loading state */}
-      <DataDisplayWithLoader someprops="hello world" />
+      <DataDisplayWithLoader  />
 
      <Footer />
     </div>

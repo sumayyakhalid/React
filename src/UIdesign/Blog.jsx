@@ -5,7 +5,7 @@ import Home from "../UIdesign/Home";
 import Footer from "./Footer";
 import { useMemo } from "react";
 import { Box, CircularProgress, Pagination } from "@mui/material";
-import { useTransition ,startTransition} from "react";
+import { useTransition, startTransition } from "react";
 
 import { lazy } from "react";
 const BlogCard = lazy(() => import("./BlogCard.jsx"));
@@ -15,12 +15,13 @@ const Blog = () => {
   const [searchTerm, setSearchTerm] = useState(""); // State for search input
   const [page, setpage] = useState(1);
   const [loading, setloading] = useState(true);
-  const[filterblogs,setfilterblogs]=useState([])
+  const [filterblogs, setfilterblogs] = useState([]);
 
   const perpage = 10;
 
   const fetchdata = async (page) => {
     setloading(true);
+
     try {
       const response = await fetch(
         `https://dev.to/api/articles?per_page=${perpage}&page=${page}`
@@ -48,20 +49,24 @@ const Blog = () => {
     return () => clearTimeout(timer);
   }, [page]);
 
-  const handleinput=((e)=>{
-      setSearchTerm(e.target.value);
-      startTransition(()=>{
-        const filteredBlogs = blogs.filter(
-          (blog) =>
-            blog.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            blog.description.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-        setfilterblogs(filteredBlogs);
-        // Filter blogs based on the search term
-    
-      })
-  })
-  
+  const handleinput = (e) => {
+    setSearchTerm(e.target.value);
+    startTransition(() => {
+      const filteredBlogs = blogs.filter(
+        (blog) =>
+          blog.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          blog.description.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setfilterblogs(filteredBlogs);
+      // Filter blogs based on the search term
+    });
+  };
+
+  // dead code
+  const multiply = (a, b) => {
+    return a * b;
+  };
+
   return (
     <div>
       <Home />
@@ -72,7 +77,7 @@ const Blog = () => {
           placeholder="Search blogs by title or description..."
           value={searchTerm}
           // onChange={(e) => setSearchTerm(e.target.value)}
-          onChange={(e)=>handleinput(e)}
+          onChange={(e) => handleinput(e)}
           style={{
             width: "50%",
             padding: "10px",
@@ -100,14 +105,15 @@ const Blog = () => {
         {console.log("Filtering blogs...")}
 
         <Suspense fallback={<CircularProgress />}>
-        
-          {loading?<CircularProgress />:filterblogs.length > 0 ? (
+          {loading ? (
+            <CircularProgress />
+          ) : filterblogs.length > 0 ? (
             filterblogs.map((blog) => <BlogCard key={blog.id} blog={blog} />)
           ) : (
             <p style={{ fontSize: "18px", fontWeight: "500" }}>
               No blogs found matching your search.
             </p>
-        )}
+          )}
         </Suspense>
       </div>
 
